@@ -73,23 +73,20 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         //2. data_item이 가지고 있는 위젯들을 선언
-        private CircleImageView civIdimg;
-        private TextView tvUsername;
-        private TextView tvUsername2;
+        private TextView tvName;
+        private TextView tvTel;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            civIdimg = itemView.findViewById(R.id.image);
-            tvUsername = itemView.findViewById(R.id.name);
-            tvUsername2 = itemView.findViewById(R.id.tel);
+            tvName = itemView.findViewById(R.id.name);
+            tvTel = itemView.findViewById(R.id.tel);
 
         }
 
         //데이터 없이 View만 가지고 있다.
-        public void setItem(Phone phones){
-            //civIdimg.setImage
-            //civIdimg.setText(data.getId().toString());
-            //tvUsername.setText(data.getUsername());
+        public void setItem(Phone phone){
+            tvName.setText(phone.getName());
+            tvTel.setText(phone.getTel());
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG="MainActivity2";
     private RecyclerView rvPhoneList;
     private PhoneAdapter phoneAdapter;
-
+    private Context mContext = this;
 
 
     @Override
@@ -41,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 List<Phone> phones =cmRespDto.getData();
                 //어댑터에세 넘기기
                 Log.d(TAG, "onResponse: "+phones);
+
+                LinearLayoutManager manager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
+                rvPhoneList = findViewById(R.id.rv_phone);
+                rvPhoneList.setLayoutManager(manager);
+                phoneAdapter = new PhoneAdapter(phones);
+
+                rvPhoneList.setAdapter(phoneAdapter);
             }
 
             @Override
@@ -51,19 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //그리기
-        List<Phone> list_phone = new ArrayList<>();
-        for(long i=0; i<10; i++){
-            list_phone.add(new Phone(i, "list_phone"+i, "list_phone"+i));
-        }
 
-
-        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rvPhoneList = findViewById(R.id.rv_phone);
-        rvPhoneList.setLayoutManager(manager);
-        phoneAdapter = new PhoneAdapter(list_phone);
-
-        rvPhoneList.setAdapter(phoneAdapter);
 
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 

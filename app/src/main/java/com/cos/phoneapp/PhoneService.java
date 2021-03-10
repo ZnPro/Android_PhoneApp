@@ -9,11 +9,11 @@ import retrofit2.http.GET;
 
 public interface PhoneService {
 
-@GET("phone")
+    @GET("phone")
     Call<CMRespDto<List<Phone>>> findAll();
 
     Retrofit retrofit= new Retrofit.Builder()
-            .baseUrl("http://192.168.0.161:8080/")
+            .baseUrl("http://113.198.238.78:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }
